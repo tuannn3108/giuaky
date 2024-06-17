@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-spingsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="/asset/style.css">
+
+    <title>AdminHub</title>
+</head>
+<body>
+
+
+<!-- SIDEBAR -->
+<section th:fragment="sidebar" id="sidebar">
+
+
+    <a href="#" class="brand">
+        <i class='bx bxs-smile'></i>
+
+
+        <span class="text">AdminHub</span>
+    </a>
+    <ul class="side-menu top">
+        <li>
+            <a href="/nhanvien">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">Quản Lý Nhân viên</span>
+            </a>
+        </li>
+        <li>
+            <a href="/phongban">
+                <i class='bx bxs-shopping-bag-alt' ></i>
+                <span class="text">Ql Phòng ban</span>
+            </a>
+        </li>
+
+    </ul>
+    <ul class="side-menu">
+        <li sec:authorize="isAuthenticated()">
+            <span>Welcome, <span th:text="${#authentication.name}"></span></span>
+            <form th:action="@{/logout}" method="post">
+                <button class="btn btn-outline-danger" type="submit">Logout</button>
+            </form>
+        </li>
+        <li sec:authorize="!isAuthenticated()">
+            <a class="btn btn-outline-primary" href="/login">Login</a>
+        </li>
+    </ul>
+</section>
+<script src="/asset/script.js"></script>
+</body>
+</html>
